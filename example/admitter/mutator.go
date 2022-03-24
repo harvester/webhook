@@ -23,6 +23,9 @@ func (v *poolMutator) Create(request *types.Request, newObj runtime.Object) (typ
 	pod := newObj.(*corev1.Pod)
 
 	labels := pod.GetLabels()
+	if labels == nil {
+		labels = make(map[string]string)
+	}
 
 	labels["example"] = "example"
 
