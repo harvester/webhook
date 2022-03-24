@@ -13,6 +13,7 @@ import (
 	werror "github.com/yaocw2020/webhook/pkg/error"
 )
 
+// AdmissionType includes mutation and validation
 type AdmissionType string
 
 var (
@@ -20,9 +21,11 @@ var (
 	AdmissionTypeValidation AdmissionType = "validation"
 )
 
+// Patch returned by the mutator
 // JSON Patch operations to mutate input data. See https://jsonpatch.com/ for more information.
 type Patch []PatchOp
 
+// PatchOperation includes add, remove, replace, copy, move and test
 type PatchOperation string
 
 const (
@@ -34,13 +37,14 @@ const (
 	PatchOpTest    PatchOperation = "test"
 )
 
+// PatchOp is one patch operation
 type PatchOp struct {
 	Op    PatchOperation `json:"op,required"`
 	Path  string         `json:"path,required"`
 	Value interface{}    `json:"value,omitempty"`
 }
 
-// An Admitter interface is used by AdmissionHandler to check if an operation is allowed.
+// Admitter interface is used by AdmissionHandler to check if an operation is allowed.
 type Admitter interface {
 	// Create checks if a CREATE operation is allowed.
 	// Patches contains JSON patch operations to be applied on the API object received by the server.
@@ -66,12 +70,14 @@ type Admitter interface {
 	Resource() Resource
 }
 
+// AdmissionHandler is a handler for the admission webhook server
 type AdmissionHandler struct {
 	admitter      Admitter
 	admissionType AdmissionType
 	options       *config.Options
 }
 
+// NewAdmissionHandler returns a new admission handler
 func NewAdmissionHandler(admitter Admitter, admissionType AdmissionType, options *config.Options) *AdmissionHandler {
 	if err := admitter.Resource().Validate(); err != nil {
 		panic(err.Error())
@@ -83,6 +89,7 @@ func NewAdmissionHandler(admitter Admitter, admissionType AdmissionType, options
 	}
 }
 
+// Admit function handles the AdmissionReview request
 func (v *AdmissionHandler) Admit(response *webhook.Response, request *webhook.Request) error {
 	return v.admit(response, NewRequest(request, v.options))
 }

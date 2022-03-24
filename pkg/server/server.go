@@ -30,6 +30,7 @@ var (
 	sideEffectClassNone = v1.SideEffectClassNone
 )
 
+// AdmissionWebhookServer for listening the AdmissionReview request sent by the apiservers
 type AdmissionWebhookServer struct {
 	context    context.Context
 	restConfig *rest.Config
@@ -39,6 +40,7 @@ type AdmissionWebhookServer struct {
 	admitters map[types.AdmissionType][]types.Admitter
 }
 
+// New admission webhook server
 func New(ctx context.Context, restConfig *rest.Config, name string, options *config.Options) *AdmissionWebhookServer {
 	return &AdmissionWebhookServer{
 		context:    ctx,
@@ -53,6 +55,8 @@ func New(ctx context.Context, restConfig *rest.Config, name string, options *con
 	}
 }
 
+// Start the admission webhook server.
+// The server will apply the validatingwebhookconfiguration and mutatingwebhookconfiguration with cert authentication automatically.
 func (s *AdmissionWebhookServer) Start() error {
 	client, err := clients.New(s.restConfig)
 	if err != nil {
@@ -186,6 +190,8 @@ func (s *AdmissionWebhookServer) buildRules(resources []types.Resource) []v1.Rul
 	return rules
 }
 
+// Register validator or mutator to the admission webhook server.
+// Call it before start the admission webhook server.
 func (s *AdmissionWebhookServer) Register(admitters []types.Admitter) {
 	mutatorType := reflect.TypeOf((*types.ValidatorAdapter)(nil))
 

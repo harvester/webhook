@@ -7,6 +7,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
+// Resource used to build the webhook rules
 type Resource struct {
 	Names          []string
 	Scope          admissionregv1.ScopeType
@@ -16,6 +17,7 @@ type Resource struct {
 	OperationTypes []admissionregv1.OperationType
 }
 
+// Validate the item of Resource
 func (r Resource) Validate() error {
 	if len(r.Names) == 0 {
 		return errUndefined("Names")

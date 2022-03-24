@@ -6,6 +6,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// AdmitError defines the response error
 type AdmitError struct {
 	message string
 	code    int32
