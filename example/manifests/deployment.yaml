@@ -28,7 +28,7 @@ spec:
             - name: CONTROLLER_USER_NAME
               value: system:serviceaccount:default:webhook-example
           image: armarny/webhook-example:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: webhook-example
           ports:
             - containerPort: 8443
