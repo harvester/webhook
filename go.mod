@@ -1,4 +1,4 @@
-module github.com/yaocw2020/webhook
+module github.com/harvester/webhook
 
 go 1.17
 

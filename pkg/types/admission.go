@@ -9,8 +9,8 @@ import (
 	admissionv1 "k8s.io/api/admission/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/yaocw2020/webhook/pkg/config"
-	werror "github.com/yaocw2020/webhook/pkg/error"
+	"github.com/harvester/webhook/pkg/config"
+	werror "github.com/harvester/webhook/pkg/error"
 )
 
 // AdmissionType includes mutation and validation

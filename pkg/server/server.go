@@ -16,9 +16,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 
-	"github.com/yaocw2020/webhook/pkg/clients"
-	"github.com/yaocw2020/webhook/pkg/config"
-	"github.com/yaocw2020/webhook/pkg/types"
+	"github.com/harvester/webhook/pkg/clients"
+	"github.com/harvester/webhook/pkg/config"
+	"github.com/harvester/webhook/pkg/types"
 )
 
 var (
