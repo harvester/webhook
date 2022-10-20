@@ -1,24 +1,24 @@
 module github.com/harvester/webhook
 
-go 1.17
+go 1.18
 
 replace (
-	k8s.io/api => k8s.io/api v0.23.3
-	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.23.3
-	k8s.io/apimachinery => k8s.io/apimachinery v0.23.3
+	k8s.io/api => k8s.io/api v0.23.7
+	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.23.7
+	k8s.io/apimachinery => k8s.io/apimachinery v0.23.7
 	k8s.io/client-go => github.com/rancher/client-go v1.23.3-rancher1
-	k8s.io/kube-aggregator => k8s.io/kube-aggregator v0.23.3
+	k8s.io/kube-aggregator => k8s.io/kube-aggregator v0.23.7
 )
 
 require (
 	github.com/gorilla/mux v1.8.0
-	github.com/rancher/dynamiclistener v0.3.1
-	github.com/rancher/wrangler v0.8.10
+	github.com/rancher/dynamiclistener v0.3.4
+	github.com/rancher/wrangler v1.0.1-0.20220520195731-8eeded9bae2a
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli v1.22.5
-	k8s.io/api v0.23.4
-	k8s.io/apimachinery v0.23.3
-	k8s.io/client-go v0.23.4
+	k8s.io/api v0.24.0
+	k8s.io/apimachinery v0.24.0
+	k8s.io/client-go v12.0.0+incompatible
 )
 
 require (
@@ -40,7 +40,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.0.1 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
+	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/net v0.0.0-20211209124913-491a49abca63 // indirect
 	golang.org/x/oauth2 v0.0.0-20210819190943-2bc19b11175f // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
@@ -53,10 +53,10 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	k8s.io/apiextensions-apiserver v0.18.0 // indirect
+	k8s.io/apiextensions-apiserver v0.24.0 // indirect
 	k8s.io/klog v1.0.0 // indirect
 	k8s.io/klog/v2 v2.30.0 // indirect
-	k8s.io/kube-aggregator v0.18.0 // indirect
+	k8s.io/kube-aggregator v0.24.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20211115234752-e816edb12b65 // indirect
 	k8s.io/utils v0.0.0-20211116205334-6203023598ed // indirect
 	sigs.k8s.io/json v0.0.0-20211020170558-c049b76a60c6 // indirect
