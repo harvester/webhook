@@ -7,8 +7,8 @@ import (
 	"github.com/rancher/wrangler/pkg/webhook"
 	"github.com/sirupsen/logrus"
 
-	"github.com/yaocw2020/webhook/pkg/config"
-	"github.com/yaocw2020/webhook/pkg/types"
+	"github.com/harvester/webhook/pkg/config"
+	"github.com/harvester/webhook/pkg/types"
 )
 
 func (s *AdmissionWebhookServer) mutation(options *config.Options) (http.Handler, []types.Resource, error) {

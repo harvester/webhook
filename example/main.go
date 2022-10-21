@@ -12,10 +12,10 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.com/yaocw2020/webhook/example/admitter"
-	"github.com/yaocw2020/webhook/pkg/config"
-	"github.com/yaocw2020/webhook/pkg/server"
-	"github.com/yaocw2020/webhook/pkg/types"
+	"github.com/harvester/webhook/example/admitter"
+	"github.com/harvester/webhook/pkg/config"
+	"github.com/harvester/webhook/pkg/server"
+	"github.com/harvester/webhook/pkg/types"
 )
 
 func main() {
