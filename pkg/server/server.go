@@ -15,6 +15,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/rest"
 
 	"github.com/harvester/webhook/pkg/clients"
@@ -115,14 +116,33 @@ func (s *WebhookServer) listenAndServe(clients *clients.Clients, handler http.Ha
 		// Sleep here to make sure server is listening and all caches are primed
 		time.Sleep(15 * time.Second)
 
+		objects := make([]runtime.Object, 0, 2)
+		validator := s.validatingWebhookConfiguration()
+		if validator != nil {
+			objects = append(objects, validator)
+		}
+
+		mutator := s.mutatingWebhookConfiguration()
+		if mutator != nil {
+			objects = append(objects, mutator)
+		}
+
 		s.caBundle = secret.Data[corev1.TLSCertKey]
 		// configure admitter webhook
-		validatingWebhookConfiguration := s.validatingWebhookConfiguration()
-		mutatingWebhookConfiguration := s.mutatingWebhookConfiguration()
-		if validatingWebhookConfiguration != nil || mutatingWebhookConfiguration != nil {
-			if err := apply.WithOwner(secret).ApplyObjects(validatingWebhookConfiguration, mutatingWebhookConfiguration); err != nil {
+		if len(objects) > 0 {
+			validatorName := "<nil>"
+			if validator != nil {
+				validatorName = validator.Name
+			}
+
+			mutatorName := "<nil>"
+			if mutator != nil {
+				mutatorName = mutator.Name
+			}
+
+			if err := apply.WithOwner(secret).ApplyObjects(objects...); err != nil {
 				return nil, fmt.Errorf("configure validatingwebhookconfiguration %s and mutatingwebhookconfiguration %s failed, error: %w",
-					validatingWebhookConfiguration.Name, mutatingWebhookConfiguration.Name, err)
+					validatorName, mutatorName, err)
 			}
 		}
 		// configure conversion webhook
