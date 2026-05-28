@@ -2,8 +2,8 @@ name: trivy-scanning
 on:
   push:
     branches:
-      - master
-      - 'v*'
+      - main
+      - "v*"
   pull_request:
 
 jobs:
