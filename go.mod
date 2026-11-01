@@ -1,6 +1,6 @@
 module github.com/harvester/webhook
 
-go 1.22.7
+go 1.25.0
 
 replace (
 	k8s.io/api => k8s.io/api v0.23.7
@@ -49,7 +49,7 @@ require (
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/oauth2 v0.16.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/sys v0.44.0 // indirect
 	golang.org/x/term v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
